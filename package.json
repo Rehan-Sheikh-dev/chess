@@ -1,0 +1,25 @@
+{
+  "name": "chess",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000c\u0000h\u0000e\u0000s\u0000s\u0000\r\u0000 \u0000",
+  "keywords": [
+    "chess",
+    "backend",
+    "chess-clone"
+  ],
+  "homepage": "https://github.com/Rehan-Sheikh-dev/chess#readme",
+  "bugs": {
+    "url": "https://github.com/Rehan-Sheikh-dev/chess/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rehan-Sheikh-dev/chess.git"
+  },
+  "license": "ISC",
+  "author": "Rehan Sheikh",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
