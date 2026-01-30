@@ -3,9 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Chess Game</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            margin: 0;
+            background-color: #18181b;
+        }
+
+        .chessboard {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+            width: 400px;
+            height: 400px;
+        }
+
+        .square {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+        }
+
+        .square.light {
+            background-color: #f0d9b5;
+        }
+
+        .square.dark {
+            background-color: #b58863;
+        }
+
+        .pawn.white {
+    color: white;
+    cursor: grab;
+    filter: drop-shadow(0 0 2px rgba(0,0,0,0.8));
+}
+
+.pawn.black {
+    color: black;
+    cursor: grab;
+}
+
+        .piece.white {
+            color: white;
+            filter: drop-shadow(0 0 2px rgba(0,0,0,1));
+            cursor: grab;
+        }
+
+        .piece.black {
+            color: black;
+            cursor: grab;
+        }
+
+        .dragging {
+            opacity: 0.5;
+        }
+
+        .flipped {
+            transform: rotate(180deg);
+        }
+    </style>
 </head>
-<body>
-    <h1>This is the Home Page</h1>
-</body>
-</html>
+<body class="w-full h-screen flex items-center justify-center">
+    
+    <div class="chessboard"></div>
+
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js" integrity="sha384-mkQ3/7FUtcGyoppY6bz/PORYoGqOl7/aSUMn2ymDOJcapfS6PHqxhRTMh1RR0Q6+" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js" integrity="sha512-xRllwz2gdZciIB+AkEbeq+gVhX8VB8XsfqeFbUh+SzHlN96dEduwtTuVuc2u9EROlmW9+yhRlxjif66ORpsgVA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/javascripts/chessGame.js"></script>
+
+</html> 
