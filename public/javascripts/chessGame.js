@@ -4,7 +4,7 @@ const chessboard = document.querySelector(".chessboard");
 
 let draggedPiece = null;
 let sourceSquare = null;
-let playerRole = "w"; 
+let playerRole = "w"
 
 const renderBoard = () => {
   const board = chess.board();
@@ -13,28 +13,19 @@ const renderBoard = () => {
   board.forEach((row, rowIndex) => {
     row.forEach((piece, colIndex) => {
       const square = document.createElement("div");
-      square.classList.add(
-        "square",
-        (rowIndex + colIndex) % 2 === 0 ? "light" : "dark"
-      );
-
+      square.classList.add("square", (rowIndex + colIndex) % 2 === 0 ? "light" : "dark");
       square.dataset.row = rowIndex;
       square.dataset.col = colIndex;
 
-      if (piece) {
+      if(piece){
         const pieceElement = document.createElement("div");
-        pieceElement.classList.add(
-          "piece",
-          piece.color === "w" ? "white" : "black"
-        );
+        pieceElement.classList.add("piece", piece.color === "w" ? "white" : "black");
         pieceElement.innerText = getPieceUnicode(piece);
         pieceElement.draggable = playerRole === piece.color;
 
         pieceElement.addEventListener("dragstart", (e) => {
-          if (!pieceElement.draggable) return;
           draggedPiece = piece;
           sourceSquare = { row: rowIndex, col: colIndex };
-          e.dataTransfer.setData("text/plain", "");
         });
 
         pieceElement.addEventListener("dragend", () => {
@@ -48,20 +39,20 @@ const renderBoard = () => {
       square.addEventListener("dragover", (e) => e.preventDefault());
 
       square.addEventListener("drop", () => {
-        if (!draggedPiece) return;
-
-        const targetSquare = {
-          row: parseInt(square.dataset.row),
-          col: parseInt(square.dataset.col),
-        };
-
-        handleMove(sourceSquare, targetSquare);
+        if(!draggedPiece) return;
+        handleMove(sourceSquare, { row: parseInt(square.dataset.row), col: parseInt(square.dataset.col) });
       });
 
       chessboard.appendChild(square);
     });
-  });
-};
+});
+    if(playerRole === "b"){
+        board.classList.add("flipped");
+    }
+    else{
+        board.classList.remove("flipped");
+    }
+}
 
 const handleMove = (source, target) => {
   const move = {
@@ -69,7 +60,8 @@ const handleMove = (source, target) => {
     to: `${String.fromCharCode(97 + target.col)}${8 - target.row }`,
     promotion: "q",
   };
-
+ 
+  socket.emit("move", move);
   const result = chess.move(move);
 
   if (result) {
